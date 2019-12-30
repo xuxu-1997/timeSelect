@@ -1,0 +1,124 @@
+/*隐藏富文本框自定义高*/
+.note-editor.note-frame .note-statusbar{
+    display: none;
+}
+/*富文本框边框颜色*/
+.note-editor{
+    border-color: #DDDDDD!important;
+    background: beige;
+}
+.color-666{
+    color:#666666;
+}
+.color-999{
+    color:#999999;
+}
+.color-333{
+    color:#333333!important;
+}
+.color-E62{
+    color:#E62129!important;
+}
+/*指定考勤*/
+.item{
+    display: flex!important;
+    justify-content: space-between;
+}
+.item span{
+    color:#ffffff;
+    font-size: 10px;
+    line-height: 16px;
+}
+.kaoqing>.weekday{
+    margin-top:-10px;
+}
+.xq{
+    top:23px!important;
+}
+.bar{
+    margin-bottom:15px!important;
+}
+/*指定考勤end*/
+
+.w-1264{
+    width:1264px;
+}
+.w-990{
+    width:990px;
+}
+.ecjob-modal .ecjob-modal-content .modal-edit-input {
+    padding:5px 10px!important;
+}
+.time-set-border{
+    height:343px;
+    position: relative;
+    padding-top:15px;
+    padding-left:45px;
+}
+.copy-time{
+    position: absolute;
+    top:0;
+    right:22px;
+    height:310px;
+    margin-top:10px;
+}
+.copy-time>li>input{
+    width:80px!important;
+    height:26px!important;
+}
+.border{
+    border:1px solid #DDDDDD;
+}
+.center{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.bg-E62{
+    background:rgba(230,33,41,0.04)!important;
+}
+.user-36{
+    width:36px;
+    height:36px;
+    border-radius: 50%;
+}
+.user-28{
+    width:28px;
+    height:28px;
+    border-radius: 50%;
+}
+.access-equipment{
+    width:180px;
+    height:30px;
+    line-height: 30px;
+    padding-left:11px;
+    border:1px solid #DDDDDD;
+    box-sizing: border-box;
+}
+.time-copy>label{
+    flex:1;
+}
+a:hover{
+    text-decoration: none;
+}
+.special-time{
+    width:823px;
+    height:10px;
+    /*background:#DDF1EF*/
+}
+.my-hour{
+    height: 10px;
+    width: calc(1 / 24 * 100%);
+    background:#DDF1EF;
+}
+.bg-green{
+    background:#009688;
+}
+.color-fff{
+    color:#ffffff;
+}
+.role-table td,.role-table th{
+    height:55px!important;
+    padding-left:98px;
+}
