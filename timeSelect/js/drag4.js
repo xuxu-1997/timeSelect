@@ -330,18 +330,23 @@ var flagDiv;
 
 	function fnend(me, i) {
 		itemX=me.nowmove;//xu加
+		if (me.width==undefined) {
+            me.width=0;
+		}
 		var width = me.width;
 		var left = me.left;
 		var item = ".item" + me.nowmove;
-		if(width == 0) {
+
+		if(width < 17) {
 			$(item).remove();
 		} else {
-			$(item).css("width", nearest(width) + "px");
-			$(item).css("left", nearest(left) + "px");
+            if ($(item).css("width") == "1px"){
+                $(item).remove();
+            }
+			//$(item).css("width", nearest(width) + "px");
+			//$(item).css("left", nearest(left) + "px");
 			var result = xiaoxiannvbianshen(item);
 			var items = $(item).parent().find(".item");
-            console.log(result.length)
-            console.log(items.length)
 			if(result.length < items.length) {
 				$.each(items, function(i, obj) {
 					if(i < result.length) {
@@ -349,10 +354,10 @@ var flagDiv;
 							"left": result[i][0] + 'px',
 							"width": result[i][1] + 'px'
 						})
-                        console.log("没移除")
+
                         console.log($(obj))
 					} else {
-                        console.log("移除？？？")
+
 						console.log($(obj))
 						$(obj).remove();
 					}

@@ -120,7 +120,7 @@
                         flag.replaceChild(span_end,flag.children[3])
                     }
                 }catch (e) {
-                    console.log(e)
+                    //console.log(e)
                 }
                 //$("#answer").html(JSON.stringify(backdata))
             })
@@ -158,6 +158,13 @@
                     timedata: data33,
                     status: true, //false表示不能编辑，true可以编辑
                     dateName:"元旦节"
+                },
+                {
+                    width: 912,
+                    mondayDate: '2019-03-08',
+                    timedata: data33,
+                    status: true, //false表示不能编辑，true可以编辑
+                    dateName:"妇女节"
                 }]
             let userTime=[]
             for(let i=0;i<specialTime.length;i++){
@@ -203,6 +210,9 @@
                 try {
                     let start2=backdata2[flagI2].startime2.slice(11,16);
                     let end2=backdata2[flagI2].endtime2.slice(11,16);
+                    console.log(start2)
+                    console.log(end2)
+                    if(start2 == end2) return
                     let span_start2=document.createElement("span");
                     let span_end2=document.createElement("span");
                     span_start2.innerHTML=start2;
@@ -216,7 +226,7 @@
                         flag2.replaceChild(span_end2,flag2.children[3])
                     }
                 }catch (e) {
-                    console.error(e)
+                    //console.error(e)
                 }
                 //$("#answer").html(JSON.stringify(backdata))
             })

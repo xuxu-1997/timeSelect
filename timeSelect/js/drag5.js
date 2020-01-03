@@ -321,15 +321,23 @@ var itemX2;
 		var width = me2.width;
 		var left = me2.left;
 		var itemTwo = ".itemTwo" + me2.nowmove;
-		if(width == 0) {
+
+
+		if(width < 17 || width == undefined) {
+			console.log("width等于0")
 			$(itemTwo).remove();
 		} else {
-			$(itemTwo).css("width", nearest(width) + "px");
-			$(itemTwo).css("left", nearest(left) + "px");
+            console.log("width不等于0")
+			//$(itemTwo).css("width", nearest(width) + "px");
+			//$(itemTwo).css("left", nearest(left) + "px");
+
+			if ($(itemTwo).css("width") == "1px"){
+                $(itemTwo).remove();
+			}
+
 			var result = xiaoxiannvbianshen(itemTwo);
 			var items = $(itemTwo).parent().find(".itemTwo");
-			console.log(result.length)
-            console.log(items.length)
+
 			if(result.length < items.length) {
 				$.each(items, function(i, obj) {
 					if(i < result.length) {
@@ -337,9 +345,7 @@ var itemX2;
 							"left": result[i][0] + 'px',
 							"width": result[i][1] + 'px'
 						})
-                        console.log($(obj))
 					} else {
-                        console.log($(obj))
 						$(obj).remove();
 					}
 				});
