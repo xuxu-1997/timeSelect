@@ -1,0 +1,4 @@
+特殊时间段
+specialTime对象数组,mondayDate对应选择日期
+$("#getdata").click()获取常规日期选择的时间
+$("#getdata2").click()获取特殊日期选择的时间

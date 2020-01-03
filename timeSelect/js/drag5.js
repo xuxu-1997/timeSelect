@@ -12,9 +12,12 @@ var itemX2;
 	var perwidth2 = 0;
 	var MyinitJuicy2 = function(data, that) {
 		console.log(data)
-		var me2 = this;
-		me2.init2(data[0], that);
-        me2.init2(data[1], that);
+        var me2 = this;
+		for (let i=0;i<data.length;i++){
+            me2.init2(data[i], that);
+
+		}
+
 		me2.offsetleft2 = $(that).offset().left + 80;
 	};
 
@@ -23,12 +26,12 @@ var itemX2;
 		var monday = $(".kaoqing2").data("monday");
 		$.each($(".weekday2"), function(i, obj) {
 			var thisday2 = getNextDate(monday, i);
-			$.each($(obj).find(".itemT"), function(j, obj1) {
+			$.each($(obj).find(".itemTwo"), function(j, obj1) {
 				var x = parseFloat($(obj1).css("left")) / perwidth2;
 				var y = parseFloat($(obj1).css("width")) / perwidth2 + x;
 				var startime2 = Math.round(x) % 2 == 0 ? (thisday2 + " " +  ("0"+Math.round(x) / 2).slice(-2) + ":00:00") : (thisday2 + " " + ("0"+ parseInt(Math.round(x) / 2)).slice(-2) + ":30:00");
 				var endtime2 = Math.round(y) % 2 == 0 ? (thisday2 + " " + ("0"+Math.round(y) / 2).slice(-2) + ":00:00") : (thisday2 + " " + ("0"+parseInt(Math.round(y) / 2)).slice(-2) + ":30:00");
-				console.log(startime2)
+				//console.log(startime2)
 				backdata2.push({
 					startime2: startime2,
 					endtime2: endtime2
@@ -52,25 +55,7 @@ var itemX2;
 			timedata: [], //[{startime2:,endtime2:},]
 			status: true,
 			data1: [{
-				"type": "周一",
-				"time2Slot": []
-			}, {
-				"type": "周二",
-				"time2Slot": []
-			}, {
-				"type": "周三",
-				"time2Slot": []
-			}, {
-				"type": "周四",
-				"time2Slot": []
-			}, {
-				"type": "周五",
-				"time2Slot": []
-			}, {
-				"type": "周六",
-				"time2Slot": []
-			}, {
-				"type": "周日",
+				"type": data.dateName,
 				"time2Slot": []
 			}]
 		}, data);
@@ -85,9 +70,9 @@ var itemX2;
 		var data33 = me2.opts.timedata;
 		var timedata = me2.opts.data1;
 	
-		for(var i = 0; i < 1; i++) {
+		/*for(var i = 0; i < 1; i++) {
 			timedata[i]["type"] += getNextDay(me2.opts.mondayDate, i);
-		}
+		}*/
 		
 		$.each(data33, function(i, obj) {
 			var day = new Date(obj.startime2.replace(/-/g,"/")).getDay() - 1;
@@ -109,7 +94,7 @@ var itemX2;
 				for(var t = 0; t < timedata[i].time2Slot.length; t++) {
 					var left = navwidth2 * timedata[i].time2Slot[t][0] / 24;
 					var width = navwidth2 * (timedata[i].time2Slot[t][1] - timedata[i].time2Slot[t][0]) / 24;
-					str2 += '<div class="itemT itemTwo' + me2.current + '" style="left:' + left + 'px;width:' + width + 'px" data-num="' + me2.current + '">' +
+					str2 += '<div class="itemTwo itemTwo' + me2.current + '" style="left:' + left + 'px;width:' + width + 'px" data-num="' + me2.current + '">' +
 						'<div class="bleft"></div><div class="bright"></div></div>';
 					me2.current++;
 				}
@@ -269,7 +254,7 @@ var itemX2;
 		me2.left = nearest(left);
 		me2.startleft = nearest(left);
 		me2.nowmove = me2.current;
-		var str2 = '<div class="itemT itemTwo' + me2.current + '" style="left:' + me2.left + 'px;width:1px"  data-num="' + me2.current + '">' +
+		var str2 = '<div class="itemTwo itemTwo' + me2.current + '" style="left:' + me2.left + 'px;width:1px"  data-num="' + me2.current + '">' +
 			'<div class="bleft"></div><div class="bright"></div></div>';
 		me2.current++;
 		var itemTwo = ".itemTwo" + (me2.current - 1);
@@ -343,6 +328,8 @@ var itemX2;
 			$(itemTwo).css("left", nearest(left) + "px");
 			var result = xiaoxiannvbianshen(itemTwo);
 			var items = $(itemTwo).parent().find(".itemTwo");
+			console.log(result.length)
+            console.log(items.length)
 			if(result.length < items.length) {
 				$.each(items, function(i, obj) {
 					if(i < result.length) {
@@ -350,7 +337,9 @@ var itemX2;
 							"left": result[i][0] + 'px',
 							"width": result[i][1] + 'px'
 						})
+                        console.log($(obj))
 					} else {
+                        console.log($(obj))
 						$(obj).remove();
 					}
 				});

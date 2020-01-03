@@ -44,17 +44,13 @@
                     </span>
                 </li>
                 <li class="d-flex font-12">
-                    <span class="w-percent-10">常規時間設置：</span>
+                    <span class="w-percent-10">特殊時間設置：</span>
                     <span class="w-percent-90">
                         <div class="border time-set-border">
                             <div class="kaoqing2" id="demo2"></div>
                             <button style="display: none" id="getdata2">获得数据</button>
                             <div id="answer"></div>
-                            <ul class="copy-time d-flex flex-column justify-content-around">
-                                <li><input type="button" value="複製時間段" class="cursor btn-border-green font-12"/></li>
-                                <li><input type="button" value="複製時間段" class="cursor btn-border-green font-12"/></li>
-                                <li><input type="button" value="複製時間段" class="cursor btn-border-green font-12"/></li>
-                                <li><input type="button" value="複製時間段" class="cursor btn-border-green font-12"/></li>
+                            <ul class="copy-time d-flex flex-column special-time-ul">
                                 <li><input type="button" value="複製時間段" class="cursor btn-border-green font-12"/></li>
                                 <li><input type="button" value="複製時間段" class="cursor btn-border-green font-12"/></li>
                                 <li><input type="button" value="複製時間段" class="cursor btn-border-green font-12"/></li>
@@ -87,15 +83,16 @@
                 timedata: data3,
                 status: true, //false表示不能编辑，true可以编辑
             });
-            //样式不显示月份，只显示星期
+            /*//样式不显示月份，只显示星期
             let myDay=document.querySelectorAll(".xq");
 
             myDay.forEach((value)=>{
                 value.innerText=value.innerText.slice(0,2)
-            })
+            })*/
 
             $("#getdata").click(function() {
                 var backdata = juicy.getdata();
+                console.log(backdata)
                 //xu加
                 let flag=document.querySelector(`.item${itemX}`)  //当前选中时间段,itemX为drag4.js frend方法赋值的全局变量
                 let items=document.querySelectorAll(`.item`)
@@ -128,36 +125,73 @@
                 //$("#answer").html(JSON.stringify(backdata))
             })
 
+
+
             //特殊时间设置
+
             //开始时间和结束时间的日期应该是同一天，不支持跨天,
             //日期格式要标准，yyyy-MM-dd hh:mm:ss
 //					console.log(new Date("2018-03-07 12:30:00"))
             var data33;
             data33=[];
-            var juicy2 = $("#demo2").initJuicy2([{
-                width: 912,
-                mondayDate: '2019-10-01',
-                timedata: data33,
-                status: true, //false表示不能编辑，true可以编辑
-                special:3
-            },{
-                width: 912,
-                mondayDate: '2019-11-01',
-                timedata: data33,
-                status: true, //false表示不能编辑，true可以编辑
-                special:3
-            }]);
-            //样式不显示月份，只显示星期
+            //trueTime为特殊时间段获取的真实日期
+            let trueTime={}
+            //mondayDate为特殊时间的日期
+            let specialTime=[
+                {
+                    width: 912,
+                    mondayDate: '2019-06-01',
+                    timedata: data33,
+                    status: true, //false表示不能编辑，true可以编辑
+                    dateName:"儿童节"
+                },
+                {
+                    width: 912,
+                    mondayDate: '2019-12-25',
+                    timedata: data33,
+                    status: true, //false表示不能编辑，true可以编辑
+                    dateName:"圣诞节"
+                },
+                {
+                    width: 912,
+                    mondayDate: '2020-01-01',
+                    timedata: data33,
+                    status: true, //false表示不能编辑，true可以编辑
+                    dateName:"元旦节"
+                }]
+            let userTime=[]
+            for(let i=0;i<specialTime.length;i++){
+               userTime.push(specialTime[i].mondayDate)
+            }
+            var juicy2 = $("#demo2").initJuicy2(specialTime);
+           /* //样式不显示月份，只显示星期
             let myDay2=document.querySelectorAll(".xq2");
             myDay2.forEach((value)=>{
-                value.innerText=value.innerText.slice(0,2)
-            })
+                value.innerText=value.innerText.slice(0,3)
+            })*/
             $("#getdata2").click(function() {
                 var backdata2 = juicy2.getdata();
-                console.log(backdata2);
-                //xu加
+                let flagTime=[]
+                for(let i=0;i<backdata2.length;i++){
+                    let item=backdata2[i];
+                    let startTime=item.startime2.slice(11)
+                    let endTime=item.endtime2.slice(11)
+                    let date=item.startime2.slice(0,10)
+                    let keys=Object.keys(flagTime)
+
+                    if(keys.indexOf(date) == -1){
+                        flagTime[date]=[]
+                    }
+                    flagTime[date].push({start:startTime,end:endTime})
+                }
+                let flagArr=Object.keys(flagTime)
+                for(let i=0;i<flagArr.length;i++){
+                    trueTime[userTime[i]]=flagTime[flagArr[i]]
+                }
+                console.log(trueTime)
+                //console.log(backdata2);
                 let flag2=document.querySelector(`.itemTwo${itemX2}`)  //当前选中时间段,itemX2为drag5.js frend方法赋值的全局变量
-                let items2=document.querySelectorAll(`.itemT`)
+                let items2=document.querySelectorAll(`.itemTwo`)
                 let flagI2;//当前选中时间段的索引
 
                 for (let i=0;i<items2.length;i++){
@@ -187,6 +221,8 @@
                 //$("#answer").html(JSON.stringify(backdata))
             })
         })
+
+
     </script>
 </body>
 </html>

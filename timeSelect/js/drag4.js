@@ -20,7 +20,7 @@ var flagDiv;
 	MyinitJuicy.prototype.getdata = function() {
 		var backdata = [];
 		var monday = $(".kaoqing").data("monday");
-		console.log(monday)
+		//console.log(monday)
 		$.each($(".weekday"), function(i, obj) {
 			var thisday = getNextDate(monday, i);
 			$.each($(obj).find(".item"), function(j, obj1) {
@@ -83,9 +83,9 @@ var flagDiv;
 		var data3 = me.opts.timedata;
 		var timedata = me.opts.data1;
 	
-		for(var i = 0; i < 7; i++) {
+	/*	for(var i = 0; i < 7; i++) {
 			timedata[i]["type"] += getNextDay(me.opts.mondayDate, i);
-		}
+		}*/
 		
 		$.each(data3, function(i, obj) {
 			var day = new Date(obj.startime.replace(/-/g,"/")).getDay() - 1;
@@ -340,6 +340,8 @@ var flagDiv;
 			$(item).css("left", nearest(left) + "px");
 			var result = xiaoxiannvbianshen(item);
 			var items = $(item).parent().find(".item");
+            console.log(result.length)
+            console.log(items.length)
 			if(result.length < items.length) {
 				$.each(items, function(i, obj) {
 					if(i < result.length) {
@@ -347,7 +349,11 @@ var flagDiv;
 							"left": result[i][0] + 'px',
 							"width": result[i][1] + 'px'
 						})
+                        console.log("没移除")
+                        console.log($(obj))
 					} else {
+                        console.log("移除？？？")
+						console.log($(obj))
 						$(obj).remove();
 					}
 				});

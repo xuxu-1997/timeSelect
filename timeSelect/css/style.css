@@ -292,7 +292,7 @@ body {
 	background-color: #009688;
 	/*overflow: hidden;*/
 }
-.itemT{
+.itemTwo{
 	position: absolute;
 	top: -1px;
 	/*width: 10px;*/
@@ -326,12 +326,12 @@ body {
 .kaoqing2>.weekday2{
 	margin-top:-10px;
 }
-.itemT span{
+.itemTwo span{
 	color:#ffffff;
 	font-size: 10px;
 	line-height: 16px;
 }
-.itemT{
+.itemTwo{
 	display: flex!important;
 	justify-content: space-between;
 }
